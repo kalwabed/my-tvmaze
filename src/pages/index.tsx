@@ -1,56 +1,34 @@
-import {
-  Link as ChakraLink,
-  Text,
-  Code,
-  List,
-  ListIcon,
-  ListItem,
-} from '@chakra-ui/react'
-import { CheckCircleIcon, LinkIcon } from '@chakra-ui/icons'
+import { GetStaticProps } from 'next'
+import dynamic from 'next/dynamic'
+import { Grid } from '@chakra-ui/react'
 
-import { Hero } from '../components/Hero'
 import { Container } from '../components/Container'
-import { Main } from '../components/Main'
-import { DarkModeSwitch } from '../components/DarkModeSwitch'
-import { CTA } from '../components/CTA'
-import { Footer } from '../components/Footer'
+import DarkModeSwitch from '../components/DarkModeSwitch'
+import Main from '@/components/Main'
+import { Movie } from '@/types'
 
-const Index = () => (
-  <Container height="100vh">
-    <Hero />
-    <Main>
-      <Text>
-        Example repository of <Code>Next.js</Code> + <Code>chakra-ui</Code> +{' '}
-        <Code>typescript</Code>.
-      </Text>
+const MovieCard = dynamic(() => import('@/components/MovieCard'))
 
-      <List spacing={3} my={0}>
-        <ListItem>
-          <ListIcon as={CheckCircleIcon} color="green.500" />
-          <ChakraLink
-            isExternal
-            href="https://chakra-ui.com"
-            flexGrow={1}
-            mr={2}
-          >
-            Chakra UI <LinkIcon />
-          </ChakraLink>
-        </ListItem>
-        <ListItem>
-          <ListIcon as={CheckCircleIcon} color="green.500" />
-          <ChakraLink isExternal href="https://nextjs.org" flexGrow={1} mr={2}>
-            Next.js <LinkIcon />
-          </ChakraLink>
-        </ListItem>
-      </List>
-    </Main>
+const HomePage = (props: { movies: Movie[] }) => {
+  return (
+    <Container>
+      <DarkModeSwitch />
+      <Main>
+        <Grid gridTemplateColumns="repeat(4, minmax(0, 1fr))">
+          {props.movies?.map(movie => (
+            <MovieCard {...movie} key={movie.id} />
+          ))}
+        </Grid>
+      </Main>
+    </Container>
+  )
+}
 
-    <DarkModeSwitch />
-    <Footer>
-      <Text>Next ❤️ Chakra</Text>
-    </Footer>
-    <CTA />
-  </Container>
-)
+export const getStaticProps: GetStaticProps = async () => {
+  const url = 'https://api.tvmaze.com/shows'
+  const movies = await (await fetch(url)).json()
 
-export default Index
+  return { props: { movies } }
+}
+
+export default HomePage

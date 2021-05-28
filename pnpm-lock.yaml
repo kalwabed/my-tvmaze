@@ -10,7 +10,8 @@ specifiers:
   '@types/react': ^17.0.8
   '@types/react-dom': ^17.0.5
   framer-motion: ^4.1.17
-  next: latest
+  htmr: ^1.0.0
+  next: ^10.2.3
   react: ^17.0.2
   react-dom: ^17.0.2
   typescript: 4.2.3
@@ -22,6 +23,7 @@ dependencies:
   '@emotion/react': 11.1.5_@types+react@17.0.8+react@17.0.2
   '@emotion/styled': 11.1.5_0cca5e5c753eb750ec115fb0ce1a3f9f
   framer-motion: 4.1.17_react-dom@17.0.2+react@17.0.2
+  htmr: 1.0.0_react@17.0.2
   next: 10.2.3_19437c2f9b137c4ee9c416360487a7aa
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
@@ -1632,6 +1634,14 @@ packages:
       randombytes: 2.1.0
     dev: false
 
+  /dom-serializer/1.3.2:
+    resolution: {integrity: sha512-5c54Bk5Dw4qAxNOI1pFEizPSjVsx5+bpJKmL2kPn8JhBUq2q09tTCa3mjijun2NfK78NMouDYNMBkOrPZiS+ig==}
+    dependencies:
+      domelementtype: 2.2.0
+      domhandler: 4.2.0
+      entities: 2.2.0
+    dev: false
+
   /domain-browser/1.2.0:
     resolution: {integrity: sha512-jnjyiM6eRyZl2H+W8Q/zLMA481hzi0eszAaBUzIVnmYVDBbnLxVNnfu1HgEBvCbL+71FrxMl3E6lpKH7Ge3OXA==}
     engines: {node: '>=0.4', npm: '>=1.2'}
@@ -1640,6 +1650,25 @@ packages:
   /domain-browser/4.19.0:
     resolution: {integrity: sha512-fRA+BaAWOR/yr/t7T9E9GJztHPeFjj8U35ajyAjCDtAAnTn1Rc1f6W6VGPJrO1tkQv9zWu+JRof7z6oQtiYVFQ==}
     engines: {node: '>=10'}
+    dev: false
+
+  /domelementtype/2.2.0:
+    resolution: {integrity: sha512-DtBMo82pv1dFtUmHyr48beiuq792Sxohr+8Hm9zoxklYPfa6n0Z3Byjj2IV7bmr2IyqClnqEQhfgHJJ5QF0R5A==}
+    dev: false
+
+  /domhandler/4.2.0:
+    resolution: {integrity: sha512-zk7sgt970kzPks2Bf+dwT/PLzghLnsivb9CcxkvR8Mzr66Olr0Ofd8neSbglHJHaHa2MadfoSdNlKYAaafmWfA==}
+    engines: {node: '>= 4'}
+    dependencies:
+      domelementtype: 2.2.0
+    dev: false
+
+  /domutils/2.6.0:
+    resolution: {integrity: sha512-y0BezHuy4MDYxh6OvolXYsH+1EMGmFbwv5FKW7ovwMG6zTPWqNPq3WF9ayZssFq+UlKdffGLbOEaghNdaOm1WA==}
+    dependencies:
+      dom-serializer: 1.3.2
+      domelementtype: 2.2.0
+      domhandler: 4.2.0
     dev: false
 
   /electron-to-chromium/1.3.740:
@@ -1667,6 +1696,10 @@ packages:
     resolution: {integrity: sha512-ETBauow1T35Y/WZMkio9jiM0Z5xjHHmJ4XmjZOq1l/dXz3lr2sRn87nJy20RupqSh1F2m3HHPSp8ShIPQJrJ3A==}
     dependencies:
       iconv-lite: 0.6.3
+    dev: false
+
+  /entities/2.2.0:
+    resolution: {integrity: sha512-p92if5Nz619I0w+akJrLZH0MX0Pb5DX39XOwQTtXSdQQOaYH03S1uIQp4mhOZtAXrxq4ViO67YTiLBo2638o9A==}
     dev: false
 
   /error-ex/1.3.2:
@@ -1917,6 +1950,29 @@ packages:
     resolution: {integrity: sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==}
     dependencies:
       react-is: 16.13.1
+    dev: false
+
+  /html-entities/2.3.2:
+    resolution: {integrity: sha512-c3Ab/url5ksaT0WyleslpBEthOzWhrjQbg75y7XUsfSzi3Dgzt0l8w5e7DylRn15MTlMMD58dTfzddNS2kcAjQ==}
+    dev: false
+
+  /htmlparser2/6.1.0:
+    resolution: {integrity: sha512-gyyPk6rgonLFEDGoeRgQNaEUvdJ4ktTmmUh/h2t7s+M8oPpIPxgNACWa+6ESR57kXstwqPiCut0V8NRpcwgU7A==}
+    dependencies:
+      domelementtype: 2.2.0
+      domhandler: 4.2.0
+      domutils: 2.6.0
+      entities: 2.2.0
+    dev: false
+
+  /htmr/1.0.0_react@17.0.2:
+    resolution: {integrity: sha512-lEEVDMOwOhyqIdLx5caDxKP5yqt5CODI/e2cWrSOmh/3OGzycayLBBlFLozV1BStH94KaUnrTOzk8sEW4Xpe1g==}
+    peerDependencies:
+      react: ^15.6.1 || ^16.0.0 || ^17.0.0
+    dependencies:
+      html-entities: 2.3.2
+      htmlparser2: 6.1.0
+      react: 17.0.2
     dev: false
 
   /http-errors/1.7.3:

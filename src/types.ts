@@ -12,6 +12,7 @@ export interface Movie {
     medium: string
     original: string
   }
+  rating: { average: number }
   summary: string
   updated: number
   _links: {

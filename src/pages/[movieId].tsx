@@ -1,19 +1,27 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
-import { Box, Flex } from '@chakra-ui/react'
+import { Box, Flex, Grid, Link } from '@chakra-ui/react'
+import NextLink from 'next/link'
 
 import { getAllMovies, getMovieById } from '@/lib/tvmaze'
 import { Container } from '@/components/Container'
-import isDarkMode from '@/util/isDarkMode'
+import { Movie } from '@/types'
+import LeftPanel from '@/components/LeftPanel'
 
-const MovieDetailPage = () => {
+import RightPanel from '@/components/RightPanel'
+
+const MovieDetailPage = ({ movie }: { movie: Movie }) => {
   return (
     <Container>
+      <Box textAlign="center">
+        <NextLink href="/" replace passHref>
+          <Link>back to home</Link>
+        </NextLink>
+      </Box>
       <Flex justify="center" alignItems="center">
-        <Box p={5} bgColor={isDarkMode() ? 'gray.700' : 'gray.300'} rounded="md">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia alias culpa, quae harum vel distinctio dolorum
-          quos. Recusandae hic, velit repudiandae itaque quam praesentium molestias, necessitatibus fugiat ullam, sit
-          dicta!
-        </Box>
+        <Grid templateColumns={['repeat(1,1fr)', 'repeat(2,1fr)']} gap={3}>
+          <LeftPanel originalImage={movie.image.original} />
+          <RightPanel movie={movie} />
+        </Grid>
       </Flex>
     </Container>
   )

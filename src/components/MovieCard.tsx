@@ -1,12 +1,12 @@
-import { Box, Flex, Text, VStack, Heading, Link as ChakraLink, HStack, Badge } from '@chakra-ui/react'
+import { Box, Flex, Text, VStack, Heading, Link as ChakraLink, HStack } from '@chakra-ui/react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { StarIcon } from '@chakra-ui/icons'
 import htmr from 'htmr'
+import { memo } from 'react'
 
 import { Movie } from '@/types'
-import { memo } from 'react'
 import isDarkMode from '@/util/isDarkMode'
+import RatingBadge from './RatingBadge'
 
 const MovieCard = (props: Movie) => {
   const { image, name, id, genres, summary, language, rating } = props
@@ -29,12 +29,7 @@ const MovieCard = (props: Movie) => {
                 </Heading>
               </a>
             </Link>
-            <Badge colorScheme="blue">
-              <Flex alignItems="center">
-                <span>{rating.average}</span>
-                <StarIcon h={2} />
-              </Flex>
-            </Badge>
+            <RatingBadge average={rating.average} />
           </HStack>
           <Text as="small">{genres.toString()}</Text>
           <Text mt={3} noOfLines={3}>

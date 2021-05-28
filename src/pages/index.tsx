@@ -4,8 +4,6 @@ import { useState } from 'react'
 import { Grid } from '@chakra-ui/react'
 
 import { Container } from '../components/Container'
-import DarkModeSwitch from '../components/DarkModeSwitch'
-import Main from '@/components/Main'
 import { Movie } from '@/types'
 import { getAllMovies } from '@/lib/tvmaze'
 import SearchMovie from '@/components/SearchMovie'
@@ -22,13 +20,10 @@ const HomePage = (props: { movies: Movie[] }) => {
 
   return (
     <Container>
-      <Main>
-        <DarkModeSwitch />
-        <SearchMovie setValue={setSearchValue} value={searchValue} />
-        <Grid gridTemplateColumns={['repeat(1, 1fr)', 'repeat(2, 1fr)', 'repeat(3, 1fr)', 'repeat(4, 1fr)']} gap={8}>
-          {filteredMovies?.map((movie, i) => i <= 51 && <MovieCard {...movie} key={movie.id} />)}
-        </Grid>
-      </Main>
+      <SearchMovie setValue={setSearchValue} value={searchValue} />
+      <Grid gridTemplateColumns={['repeat(1, 1fr)', 'repeat(2, 1fr)', 'repeat(3, 1fr)', 'repeat(4, 1fr)']} gap={8}>
+        {filteredMovies?.map((movie, i) => i <= 51 && <MovieCard {...movie} key={movie.id} />)}
+      </Grid>
     </Container>
   )
 }

@@ -1,4 +1,4 @@
-import { Box, Flex, Text, VStack, Heading, Link as ChakraLink, HStack, Badge, useColorMode } from '@chakra-ui/react'
+import { Box, Flex, Text, VStack, Heading, Link as ChakraLink, HStack, Badge } from '@chakra-ui/react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { StarIcon } from '@chakra-ui/icons'
@@ -6,13 +6,13 @@ import htmr from 'htmr'
 
 import { Movie } from '@/types'
 import { memo } from 'react'
+import isDarkMode from '@/util/isDarkMode'
 
 const MovieCard = (props: Movie) => {
   const { image, name, id, genres, summary, language, rating } = props
-  const { colorMode } = useColorMode()
 
   return (
-    <Box rounded="md" bgColor={colorMode === 'light' ? 'gray.200' : 'gray.700'} shadow="base" _hover={{ shadow: 'md' }}>
+    <Box rounded="md" bgColor={isDarkMode() ? 'gray.700' : 'gray.100'} shadow="base" _hover={{ shadow: 'md' }}>
       <VStack alignItems="start">
         <Box roundedTop="md" overflow="hidden">
           <Image src={image.medium} width={400} height={450} />

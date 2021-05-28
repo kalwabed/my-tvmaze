@@ -1,4 +1,4 @@
-import { Box, Flex, Img, Text, VStack } from '@chakra-ui/react'
+import { Box, Flex, Img, Text, VStack, Heading } from '@chakra-ui/react'
 import Image from 'next/image'
 
 import { Movie } from '@/types'
@@ -7,12 +7,16 @@ const MovieCard = (props: Movie) => {
   const { image, name } = props
 
   return (
-    <VStack spacing=".75rem" rounded="md" p="4">
-      <Box roundedTop="md" bgColor="blue.500">
-        <Img src={image.medium} width={400} height={400} roundedTop="md" />
-      </Box>
-      <Text>{name}</Text>
-    </VStack>
+    <Box rounded="md" bgColor="gray.200">
+      <VStack spacing="5px" alignItems="start">
+        <Box roundedTop="md" bgColor="blue.500" overflow="hidden">
+          <Image src={image.medium} width={400} height={400} />
+        </Box>
+        <Box p={3}>
+          <Heading fontSize="2xl">{name}</Heading>
+        </Box>
+      </VStack>
+    </Box>
   )
 }
 

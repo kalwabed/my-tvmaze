@@ -2,5 +2,5 @@ module.exports = {
   future: {
     webpack5: true
   },
-  images: { domains: ['lorempixel.com'] }
+  images: { domains: ['static.tvmaze.com'] }
 }

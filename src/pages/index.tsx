@@ -14,7 +14,7 @@ const HomePage = (props: { movies: Movie[] }) => {
     <Container>
       <DarkModeSwitch />
       <Main>
-        <Grid gridTemplateColumns="repeat(4, minmax(0, 1fr))">
+        <Grid gridTemplateColumns={['repeat(1, 1fr)', 'repeat(2, 1fr)', 'repeat(3, 1fr)', 'repeat(4, 1fr)']} gap={8}>
           {props.movies?.map(movie => (
             <MovieCard {...movie} key={movie.id} />
           ))}
@@ -26,6 +26,7 @@ const HomePage = (props: { movies: Movie[] }) => {
 
 export const getStaticProps: GetStaticProps = async () => {
   const url = 'https://api.tvmaze.com/shows'
+
   const movies = await (await fetch(url)).json()
 
   return { props: { movies } }

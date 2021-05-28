@@ -5,6 +5,7 @@ import { StarIcon } from '@chakra-ui/icons'
 import htmr from 'htmr'
 
 import { Movie } from '@/types'
+import { memo } from 'react'
 
 const MovieCard = (props: Movie) => {
   const { image, name, id, genres, summary, language, rating } = props
@@ -51,4 +52,4 @@ const MovieCard = (props: Movie) => {
   )
 }
 
-export default MovieCard
+export default memo(MovieCard)

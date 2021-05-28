@@ -1,23 +1,32 @@
 import { GetStaticProps } from 'next'
 import dynamic from 'next/dynamic'
+import { useState } from 'react'
 import { Grid } from '@chakra-ui/react'
 
 import { Container } from '../components/Container'
 import DarkModeSwitch from '../components/DarkModeSwitch'
 import Main from '@/components/Main'
 import { Movie } from '@/types'
+import { getAllMovies } from '@/lib/tvmaze'
+import SearchMovie from '@/components/SearchMovie'
 
 const MovieCard = dynamic(() => import('@/components/MovieCard'))
 
 const HomePage = (props: { movies: Movie[] }) => {
+  const [searchValue, setSearchValue] = useState('')
+
+  const filteredMovies =
+    searchValue?.length >= 2
+      ? props.movies.filter(movie => movie.name.toLowerCase().includes(searchValue.toLowerCase()))
+      : props.movies
+
   return (
     <Container>
-      <DarkModeSwitch />
       <Main>
+        <DarkModeSwitch />
+        <SearchMovie setValue={setSearchValue} value={searchValue} />
         <Grid gridTemplateColumns={['repeat(1, 1fr)', 'repeat(2, 1fr)', 'repeat(3, 1fr)', 'repeat(4, 1fr)']} gap={8}>
-          {props.movies?.map(movie => (
-            <MovieCard {...movie} key={movie.id} />
-          ))}
+          {filteredMovies?.map((movie, i) => i <= 51 && <MovieCard {...movie} key={movie.id} />)}
         </Grid>
       </Main>
     </Container>
@@ -25,9 +34,7 @@ const HomePage = (props: { movies: Movie[] }) => {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const url = 'https://api.tvmaze.com/shows'
-
-  const movies = await (await fetch(url)).json()
+  const movies = await getAllMovies()
 
   return { props: { movies } }
 }

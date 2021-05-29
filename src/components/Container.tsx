@@ -11,6 +11,7 @@ export const Container = (props: FlexProps) => {
   const color = { light: 'black', dark: 'white' }
   return (
     <Flex
+      mb="10"
       direction="column"
       minH="100vh"
       alignItems="center"

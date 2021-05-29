@@ -2,6 +2,8 @@ import { Movie } from '@/types'
 
 const url = 'https://api.tvmaze.com/shows'
 
+// API docs: https://www.tvmaze.com/api
+
 export const getAllMovies = async (): Promise<Movie[]> => {
   return (await (await fetch(url)).json()) as Movie[]
 }

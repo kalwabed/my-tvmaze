@@ -10,6 +10,8 @@ import LeftPanel from '@/components/LeftPanel'
 import RightPanel from '@/components/RightPanel'
 
 const MovieDetailPage = ({ movie }: { movie: Movie }) => {
+  if (!movie) return null
+
   return (
     <Container>
       <Box textAlign="center">
@@ -19,7 +21,7 @@ const MovieDetailPage = ({ movie }: { movie: Movie }) => {
       </Box>
       <Flex justify="center" alignItems="center">
         <Grid templateColumns={['repeat(1,1fr)', 'repeat(2,1fr)']} gap={3}>
-          <LeftPanel originalImage={movie.image.original} />
+          <LeftPanel originalImage={movie?.image?.original} />
           <RightPanel movie={movie} />
         </Grid>
       </Flex>
